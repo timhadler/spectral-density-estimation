@@ -1,6 +1,6 @@
 clc, clear, close all
 
-data = load('Data sets/Z/Z001.txt');
+data = load('Data sets/A/Z001.txt');
 data = data(1:end-1);     % Remove last sample so we have an even number
 
 n = length(data);
