@@ -7,7 +7,7 @@ n = length(data);
 fs = 173.61;
 
 % Calculate and plot the periodogram
-[pxx, fxx] = pwelch(data, 64, 0)%, n, fs);
+[pxx, fxx] = pwelch(data, 64, 0, 256, fs)%, n, fs);
 
 plot(fxx, 10*log10(pxx))
 title('Welch''s method power Spectral Density Estimate')
