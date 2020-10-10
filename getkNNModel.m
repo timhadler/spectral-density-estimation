@@ -13,6 +13,7 @@ classifierHealthyClosed = 2;
 classifierEpilepsyNoSeizure = 3;
 classifierEpilepsySeizure = 4;
 
+%Extract data from files and set classifier based on filename
 for i = 1:Ntraining*Ndatasets
     if i < 10
         filename = sprintf('Data sets/A/Z00%d.txt', i);
@@ -46,9 +47,11 @@ for i = 1:Ntraining*Ndatasets
         classification(1, i) = classifierEpilepsySeizure;
     end
     
+    % Load data from file
     data = load(filename);
     data = data(1:end-1);     % Remove last sample so we have an even number
     
+    % Estimate PSD using selected data
     if psdMethod == "Welch"
         % Calculate psd for each dataset
         [pxx, fxx] = pwelch(data, 64, 25, 256, fs);%, n, fs);
@@ -59,6 +62,7 @@ for i = 1:Ntraining*Ndatasets
     end
 end
 
+% Create model
 Mdl = fitcknn(spect_data, classification, 'NumNeighbors', 4);
 
 end
