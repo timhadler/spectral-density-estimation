@@ -1,7 +1,7 @@
 clc, clear, close all
 
-Ntraining = 60; %Number of sets of data used per classification for training
-estimateType = "Welch";
+Ntraining = 50; %Number of sets of data used per classification for training
+estimateType = "Bartlett";
 
 % Create model
 Mdl = getkNNModel(estimateType, Ntraining)

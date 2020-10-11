@@ -56,17 +56,23 @@ for i = 1:Ntraining*Ndatasets
     % Estimate PSD using selected data
     if psdMethod == "Periodogram"
         [pxx, fxx] = periodogram(data, [], [], fs);
+        for j = 1:length(pxx)
+            spect_data(i, j) = transpose(10*log10(pxx(j)));
+        end
     elseif psdMethod == "Bartlett"
         %Bartlett's method
-
+        pxx = BartlettsMethod(data);
+        for j = 1:length(pxx)
+            spect_data(i, j) = pxx(j);
+        end
     elseif psdMethod == "Welch"
         % Calculate psd for each dataset
         [pxx, fxx] = pwelch(data, 64, 25, 4094, fs);%, n, fs);
+        for j = 1:length(pxx)
+            spect_data(i, j) = transpose(10*log10(pxx(j)));
+        end
     end
     
-    for j = 1:length(pxx)
-        spect_data(i, j) = transpose(10*log10(pxx(j)));
-    end
 end
 
 % Create model

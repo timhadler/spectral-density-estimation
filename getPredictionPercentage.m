@@ -52,14 +52,16 @@ for i = Ntraining+1:Ndatasets
     
     if psdMethod == "Periodogram"
         [pxx, fxx] = periodogram(data, [], [], fs);
+        spect = transpose(10*log10(pxx));
     elseif psdMethod == "Bartlett"
         %Bartlett's method
+        pxx = BartlettsMethod(data);
+        spect =  pxx;
     elseif psdMethod == "Welch"
         % Calculate psd for each dataset
         [pxx, fxx] = pwelch(data, 64, 25, 4094, fs);%, n, fs);
+        spect = transpose(10*log10(pxx));
     end
-    
-    spect = transpose(10*log10(pxx));
     
     predictedClassifier = predict(Mdl, spect);
     
