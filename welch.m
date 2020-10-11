@@ -1,13 +1,13 @@
 clc, clear, close all
 
-data = load('Data sets/A/Z001.txt');
+data = load('Data sets/E/S025.txt');
 data = data(1:end-1);     % Remove last sample so we have an even number
 
 n = length(data);
 fs = 173.61;
 
 % Calculate and plot the periodogram
-[pxx, fxx] = pwelch(data, 64, 0, 256, fs)%, n, fs);
+[pxx, fxx] = pwelch(data, 100, 0, 256, fs)%, n, fs);
 
 plot(fxx, 10*log10(pxx))
 title('Welch''s method power Spectral Density Estimate')
