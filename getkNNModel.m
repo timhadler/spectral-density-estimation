@@ -13,6 +13,8 @@ classifierHealthyClosed = 2;
 classifierEpilepsyNoSeizure = 3;
 classifierEpilepsySeizure = 4;
 
+pxx = [];
+
 %Extract data from files and set classifier based on filename
 for i = 1:Ntraining*Ndatasets
     if i < 10
@@ -52,12 +54,17 @@ for i = 1:Ntraining*Ndatasets
     data = data(1:end-1);     % Remove last sample so we have an even number
     
     % Estimate PSD using selected data
-    if psdMethod == "Welch"
-        % Calculate psd for each dataset
-        [pxx, fxx] = pwelch(data, 64, 25, 256, fs);%, n, fs);
-    end
+    if psdMethod == "Periodogram"
+        [pxx, fxx] = periodogram(data, [], [], fs);
+    elseif psdMethod == "Bartlett"
+        %Bartlett's method
 
-    for j = 1:129
+    elseif psdMethod == "Welch"
+        % Calculate psd for each dataset
+        [pxx, fxx] = pwelch(data, 64, 25, 4094, fs);%, n, fs);
+    end
+    
+    for j = 1:length(pxx)
         spect_data(i, j) = transpose(10*log10(pxx(j)));
     end
 end

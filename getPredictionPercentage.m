@@ -10,7 +10,7 @@ classifierEpilepsySeizure = 4;
 
 nCorrect = 0;
 
-for i = Nprediction+1:Ndatasets
+for i = Ntraining+1:Ndatasets
     if dataset == "A"
         if i < 100
             filename = sprintf('Data sets/A/Z0%d.txt', i);
@@ -50,9 +50,13 @@ for i = Nprediction+1:Ndatasets
     n = length(data);
     fs = 173.61;
     
-    if psdMethod == "Welch"
+    if psdMethod == "Periodogram"
+        [pxx, fxx] = periodogram(data, [], [], fs);
+    elseif psdMethod == "Bartlett"
+        %Bartlett's method
+    elseif psdMethod == "Welch"
         % Calculate psd for each dataset
-        [pxx, fxx] = pwelch(data, 64, 25, 256, fs);%, n, fs);
+        [pxx, fxx] = pwelch(data, 64, 25, 4094, fs);%, n, fs);
     end
     
     spect = transpose(10*log10(pxx));

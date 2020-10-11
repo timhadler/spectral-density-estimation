@@ -1,6 +1,6 @@
 clc, clear, close all
 
-Ntraining = 50; %Number of sets of data used per classification for training
+Ntraining = 60; %Number of sets of data used per classification for training
 estimateType = "Welch";
 
 % Create model
