@@ -13,3 +13,6 @@ the model is first trained by passing sets of data that the correct category is 
 has been trained, it can be tested on more datasets to assess its ability to correctly classify datasets it has not ‘seen’ before. The accuracy of the KNN classification will depend on the estimator's ability to extract 
 useful information from the raw EEG data. 
 
+![PSD Estimates](https://user-images.githubusercontent.com/41405980/141661889-2a8effdd-9123-4acb-ae22-d7911efba746.PNG)
+![Welchs method](https://user-images.githubusercontent.com/41405980/141661890-73e66bb1-c9f6-4667-a024-0e98eff0bbe4.PNG)
+![acc table](https://user-images.githubusercontent.com/41405980/141661893-94df67bc-5866-4fb0-8dd5-94f9931d0078.PNG)
