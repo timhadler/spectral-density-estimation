@@ -5,7 +5,15 @@ By applying a spectral density estimation technique, information about a patient
 brain activity can be analyzed by looking at the power of the frequency components in each wave pattern. This information can then be used to get an idea of how the 
 patient’s brain is behaving, and whether to diagnose them with epilepsy. 
 
-This project investigates how non-parametric spectral density estimates can be used to diagnose patients with epilepsy. 
+The aim of the project is to analyze
+epileptic activity using non-parametric density estimation methods on EEG signals.
+There is a publicly available EEG dataset online that contains five sets of EEG data, they are
+labeled as sets A, B, C, D, and E. Sets A and B contain EEG data from healthy patients with their
+eyes open (set A) and eyes closed (set B). Sets C, D and E are taken from patients who suffer from
+epilepsy. Sets C and D are taken during seizure-free intervals, while set E is taken during epileptic
+activity. Our aim is to apply different spectral density estimation techniques to analyze signals
+from the EEG dataset and compare their ability to extract useful information that could help predict
+which set the data came from (A, B, C, D or E). 
 
 Once the spectral density of an EEG signal has been found, it can be classified using an algorithm such as a k-nearest neighbours algorithm (KNN). 
 KNN is a type of neural network that can be trained to extract relevant features from a dataset to classify it. The technique used is called supervised training, where 
